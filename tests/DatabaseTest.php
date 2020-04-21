@@ -1,23 +1,36 @@
 <?php
 use PHPUnit\Framework\TestCase;
 
-class MyGuestbookTest extends TestCase
+class DatabaseTest extends TestCase
 {
+    use \PHPUnit\DbUnit\TestCaseTrait;
 
-    /**
-     * @return PHPUnit_Extensions_Database_DB_IDatabaseConnection
-     */
+    private static $pdo = null;
+    private $conn = null;
+
     public function getConnection()
     {
-        $pdo = new PDO('sqlite::memory:');
-        return $this->createDefaultDBConnection($pdo, ':memory:');
+        if($this->conn == null){
+            if(self::$pdo == null){
+                self::$pdo = new \PDO($GLOBALS['DB_DSN'], $GLOBALS['DB_USER'], $GLOBALS['DB_PASSWD']);
+            }
+            $this->conn = $this->createDefaultDBConnection(self::$pdo,$GLOBALS['DB_DBNAME']);
+        }
+        return $this->conn;
     }
 
-    /**
-     * @return PHPUnit_Extensions_Database_DataSet_IDataSet
-     */
     public function getDataSet()
     {
-        return $this->createFlatXMLDataSet(dirname(__FILE__).'/_files/guestbook-seed.xml');
+        $dataSet = $this->createMySQLXMLDataSet(__dir__.'/files/rbac.xml');
+        return $dataSet;
+    }
+
+    public function testInfo(){
+        // 获取待插入的数据
+        $dataset = $this->getDataSet()->getTable("rbac_user");
+        // 获取数据库数据
+        $databaseData = $this->getConnection()->createQueryTable("rbac_user","select * from rbac_user");
+        // 设置断言，将两者比较
+        $this->assertTablesEqual($dataset,$databaseData);
     }
 }

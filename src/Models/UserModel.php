@@ -8,9 +8,12 @@
 
 namespace LinLancer\RBAC\Models;
 
+use LinLancer\RBAC\Models\Traits\UserModelTrait;
 
 class UserModel extends BaseModel
 {
+    use UserModelTrait;
+
     public $table = 'user';
 
     public $fillable = [

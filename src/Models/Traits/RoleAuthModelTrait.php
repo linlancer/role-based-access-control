@@ -6,10 +6,10 @@
  * Time: 9:12
  */
 
-namespace LinLancer\RBAC\Models;
+namespace LinLancer\RBAC\Models\Traits;
 
 
-class RoleAuthModelTrait
+trait RoleAuthModelTrait
 {
     public function auth()
     {
