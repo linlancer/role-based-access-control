@@ -18,10 +18,6 @@ class UserModel extends BaseModel
 
     public $fillable = [
         'name',
+        'group_id',
     ];
-
-    public function roles()
-    {
-        return $this->belongsToMany(RoleModel::class, UserRoleModel::fullTable(), 'user_id', 'role_id');
-    }
 }

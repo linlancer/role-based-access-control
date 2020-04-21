@@ -9,18 +9,17 @@
 namespace LinLancer\RBAC\Models;
 
 
+use LinLancer\RBAC\Models\Traits\GroupModelTrait;
+
 class GroupModel extends BaseModel
 {
+    use GroupModelTrait;
+
     public $table = 'group';
 
     public $fillable = [
         'group_name',
         'description',
     ];
-
-    public function roles()
-    {
-        return $this->belongsToMany(RoleModel::class, GroupRoleModel::fullTable(), 'group_id', 'role_id');
-    }
 
 }

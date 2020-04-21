@@ -11,7 +11,7 @@ namespace LinLancer\RBAC\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
-class BaseModel extends Model implements \BaseCurdInterface
+class BaseModel extends Model implements BaseCurdInterface
 {
     public $connection = 'default';
 

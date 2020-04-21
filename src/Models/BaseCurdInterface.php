@@ -5,6 +5,7 @@
  * Date: 2020/4/17
  * Time: 18:30
  */
+namespace LinLancer\RBAC\Models;
 
 interface BaseCurdInterface
 {
