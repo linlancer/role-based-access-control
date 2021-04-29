@@ -10,12 +10,12 @@
     }
   ],
   "require": {
-    "illuminate/database": "5.7.*|5.8.*",
+    "illuminate/database": "^6.20.26",
     "phpunit/phpunit": "^7.0",
     "phpunit/dbunit": "~4.0.0"
   },
   "require-dev": {
-    "illuminate/database": "5.7.*|5.8.*",
+    "illuminate/database": "^6.20.26",
     "phpunit/phpunit": "^7.0",
     "phpunit/dbunit": "~4.0.0"
   },
